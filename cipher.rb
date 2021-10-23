@@ -49,3 +49,5 @@ def caesar_cipher(text_to_cipher, key)
   end.join("")
 
 end
+
+puts caesar_cipher(ARGV[0], ARGV[1].to_i)
