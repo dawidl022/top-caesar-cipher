@@ -7,5 +7,5 @@ Cipher some text with a given key using the Caesar cipher algorithm.
 Usage:
 
 ```
-rubycipher.rb "<text-to-be-ciphered>" <key-to-shift-letters>
+ruby cipher.rb "<text-to-be-ciphered>" <key-to-shift-letters>
 ```
