@@ -19,6 +19,10 @@ end
 # @param [Integer] key shift letter by key positions
 # @return [String] letter shifted by key positions in alphabet
 def shift(letter, key)
+  unless key.between?(0, 25)
+    raise ArgumentError, "Key must be an integer between 0 and 25"
+  end
+
   alphabet_end_code = is_upper?(letter) ? "Z".ord : "z".ord
   letter_code = letter.ord
   ciphered_code = letter_code + key
@@ -50,4 +54,20 @@ def caesar_cipher(text_to_cipher, key)
 
 end
 
-puts caesar_cipher(ARGV[0], ARGV[1].to_i)
+# Main method that gets called when file is executes as a script, calls the
+# ciphering method if the correct number of arguments were passed in
+# @param [Array<String>] argv array of arguments to execute the script
+# @return The ciphered message if at least 2 arguments were passed (the rest
+#   after the second one are ignored), or a usage message if less than 2 were
+#   passed
+def main(argv)
+  if argv.length >= 2
+    caesar_cipher(argv[0], argv[1].to_i)
+  else
+    "Usage: ruby cipher.rb \"<text-to-be-ciphered>\" <key-to-shift-letters>"
+  end
+end
+
+if __FILE__ == $PROGRAM_NAME
+  puts main(ARGV)
+end
